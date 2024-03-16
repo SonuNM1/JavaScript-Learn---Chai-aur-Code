@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+        }
+        #weighing-machine {
+            width: 200px;
+            height: 40px;
+            background-color: #ccc;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #weight-display {
+            font-size: 18px;
+        }
+        .shape {
+            width: 50px;
+            height: 50px;
+            background-color: #2196F3;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #question-container {
+            margin-top: 20px;
+        }
+        #options {
+            list-style-type: none;
+            padding: 0;
+        }
+        #options li {
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+        }
+        #score-container {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="weighing-machine">
+            <div id="weight-display">Total Weight: <span id="total-weight">0</span> kg</div>
+        </div>
+        <div id="shapes-container">
+            <div class="shape" data-weight="5">5 kg</div>
+            <div class="shape" data-weight="7">7 kg</div>
+            <div class="shape" data-weight="10">10 kg</div>
+            <div class="shape" data-weight="15">15 kg</div>
+            <div class="shape" data-weight="20">20 kg</div>
+        </div>
+        <div id="question-container">
+            <p id="question">What's the total weight?</p>
+            <ul id="options"></ul>
+        </div>
+        <div id="score-container">
+            Score: <span id="score">0</span>
+        </div>
+    </div>
+
+    <script>
+        const totalWeightDisplay = document.getElementById('total-weight');
+        const shapes = document.querySelectorAll('.shape');
+        const optionsList = document.getElementById('options');
+        const scoreDisplay = document.getElementById('score');
+        let totalWeight = 0;
+        let score = 0;
+
+        // Function to update total weight display
+        function updateTotalWeight() {
+            totalWeightDisplay.textContent = totalWeight;
+        }
+
+        // Function to generate random question
+        function generateQuestion() {
+            optionsList.innerHTML = ''; // Clear previous options
+            const correctOption = totalWeight;
+            const options = [correctOption];
+            while (options.length < 4) {
+                const randomWeight = Math.floor(Math.random() * 50) + 1; // Random weight between 1 and 50
+                if (!options.includes(randomWeight)) {
+                    options.push(randomWeight);
+                }
+            }
+            options.sort(() => Math.random() - 0.5); // Shuffle options
+
+            // Display options
+            options.forEach(option => {
+                const li = document.createElement('li');
+                li.textContent = `${option} kg`;
+                li.addEventListener('click', () => {
+                    if (option === correctOption) {
+                        score++;
+                        scoreDisplay.textContent = score;
+                    }
+                    totalWeight = 0;
+                    updateTotalWeight();
+                    generateQuestion();
+                });
+                optionsList.appendChild(li);
+            });
+
+            document.getElementById('question').textContent = `What's the total weight?`;
+        }
+
+        // Event listeners for drag and drop
+        shapes.forEach(shape => {
+            shape.draggable = true;
+            shape.addEventListener('dragstart', (event) => {
+                event.dataTransfer.setData('text/plain', shape.dataset.weight);
+            });
+        });
+
+        document.getElementById('weighing-machine').addEventListener('dragover', (event) => {
+            event.preventDefault();
+        });
+
+        document.getElementById('weighing-machine').addEventListener('drop', (event) => {
+            event.preventDefault();
+            const weight = parseInt(event.dataTransfer.getData('text/plain'));
+            totalWeight += weight;
+            updateTotalWeight();
+            generateQuestion();
+        });
+
+        // Initial question generation
+        generateQuestion();
+    </script>
+</body>
+</html>
