@@ -1,9 +1,6 @@
-const { JSDOM } = require('jsdom');
-
-const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-const document = dom.window.document;
 
 const parent = document.querySelectorAll('.parent');
+
 console.log(parent);
 
 parent.forEach(parentElement => {
@@ -24,5 +21,7 @@ parent.forEach(parentElement => {
 
     console.log(dayOne.parentElement)
     console.log(dayOne.nextElementSibling)
+
+    console.log('nodes: ', dayOne.childNodes)
 
 });
