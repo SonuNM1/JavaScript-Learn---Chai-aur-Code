@@ -1,0 +1,27 @@
+body{
+    background-color: #212121;
+    color: #fff;
+}
+
+.button{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+#grey{
+    background-color: grey;
+}
+#white{
+    background-color: white;
+}
+#blue{
+    background-color: blue;
+}    
+#yellow{
+    background-color: yellow;
+}
+#purple{
+    background-color: aquamarine;
+}
