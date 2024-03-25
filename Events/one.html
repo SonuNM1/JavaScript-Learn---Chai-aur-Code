@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing Image</h2>
+    <div> 
+        <ul id="images" >
+            <li><img width="150px" id="photoshop"
+                    src="https://images.pexels.com/photos/14203240/pexels-photo-14203240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="table"></li>
+            
+                <li><img width="150px" id="japan"
+                    src="https://images.pexels.com/photos/20587031/pexels-photo-20587031/free-photo-of-woman-in-dress-lying-down-with-mirror-on-tree.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="table"></li>
+
+            <li><img width="150px" id="river"
+                    src="https://images.pexels.com/photos/18310133/pexels-photo-18310133/free-photo-of-trees-in-countryside.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="trees"></li>
+
+            <li><img width="150px" id="owl"
+                    src="https://images.pexels.com/photos/17822918/pexels-photo-17822918/free-photo-of-turtle-swimming-in-the-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="turtle"></li>
+
+            <li><img width="150px" id="prayer"
+                    src="https://images.pexels.com/photos/20218683/pexels-photo-20218683/free-photo-of-sunrise-on-film-in-berlin.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="city"></li>
+
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    // document.getElementById('owl').onclick = function(){
+    //     alert('owl clicked') ; 
+    // }
+
+    // jQuery - on
+
+    // type, timestamp, defaultPrevented 
+    // target, toElement, srcElement, currentTarget
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey , shiftkey, keyCode
+
+    document.getElementById('images').addEventListener('click', function (e) {
+        // alert('owl clicked');
+        console.log('click inside the ul');
+    },false);
+
+    document.getElementById('owl').addEventListener('click', function (e) {
+        // alert('owl clicked');
+        console.log('owl clicked');
+    },false);
+
+
+</script>
+
+</html>
