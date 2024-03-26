@@ -1,0 +1,39 @@
+body{
+    background-color: #414141;
+    color: #fff;
+}
+
+#container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 2px rgb(209, 154, 134);
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+}
+
+.content, .buttons {
+    width: 100%; /* Ensure content and buttons span full width */
+}
+
+.buttons {
+    margin-top: 20px; /* Adjust spacing between content and buttons */
+}
+
+.buttons button {
+    margin: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: black;
+    color: white;
+}
